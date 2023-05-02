@@ -1,8 +1,10 @@
 package com.springboot.SolutionNinjas.repository;
 
 import com.springboot.SolutionNinjas.dto.AdminTicketsDTO;
+import com.springboot.SolutionNinjas.dto.TicketDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.springboot.SolutionNinjas.model.Ticket;
@@ -19,4 +21,13 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
             + "INNER JOIN ticket.status status "
             + "INNER JOIN ticket.client user ")
     List<AdminTicketsDTO> ticketsReport();
+
+    @Query("SELECT new com.springboot.SolutionNinjas.dto.TicketDto (ticketid) FROM Ticket t where t.client.userid=:userId")
+    public List<TicketDto> getTicketsByUser(@Param("userId") int userId);
+
+    @Query("SELECT new com.springboot.SolutionNinjas.dto.TicketDto (ticketid) FROM Ticket t where t.property.propertyid=:propertyId")
+    public List<TicketDto> getTicketsByProperty(@Param("propertyId") int propertyId);
+
+    @Query("SELECT new com.springboot.SolutionNinjas.dto.TicketDto (ticketid) FROM Ticket t where t.status.statusid=:statusId")
+    public List<TicketDto> getTicketsByStatus(@Param("statusId") int statusId);
 }

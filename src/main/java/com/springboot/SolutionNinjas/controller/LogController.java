@@ -1,5 +1,6 @@
 package com.springboot.SolutionNinjas.controller;
 
+import com.springboot.SolutionNinjas.dto.LogsDto;
 import com.springboot.SolutionNinjas.model.Log;
 import com.springboot.SolutionNinjas.service.LogService;
 import jakarta.validation.Valid;
@@ -43,4 +44,13 @@ public class LogController {
         return new ResponseEntity<Log>(logService.updateLog(log),HttpStatus.OK);
     }
 
+    @GetMapping("/logsByTicket/{ticketId}")
+    public List<LogsDto> getLogsByTicket(@PathVariable int ticketId) {
+        return logService.logsByTicketId(ticketId);
+    }
+
+    @GetMapping("/logsByDepartment/{departmentId}")
+    public List<LogsDto> getLogsByDepartment(@PathVariable int departmentId) {
+        return logService.logsByDepartmentId(departmentId);
+    }
 }

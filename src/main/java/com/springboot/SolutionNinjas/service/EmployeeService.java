@@ -3,6 +3,7 @@ package com.springboot.SolutionNinjas.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class EmployeeService{
 	}
 
 	public Employee getOneEmployee(int empId) {
-		Optional<Employee> optionalEmployee = emprepo.findById(empId);
+		Optional<Employee> optionalEmployee = Optional.ofNullable(emprepo.findById(empId).orElseThrow(() -> new ResourceNotFoundException("Employee", "Id", empId)));
 		if(optionalEmployee.isPresent())
 			return optionalEmployee.get();
 		System.out.println("Employee not found for id : "+empId);

@@ -3,6 +3,9 @@ package com.springboot.SolutionNinjas.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.SolutionNinjas.dto.LogsDto;
+import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
+import com.springboot.SolutionNinjas.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +27,7 @@ public class LogService {
 	}
 
 	public Log getOneLog(int logId) {
-		Optional<Log> optionalLog = logRepo.findById(logId);
+		Optional<Log> optionalLog = Optional.ofNullable(logRepo.findById(logId).orElseThrow(() -> new ResourceNotFoundException("Log", "Id", logId)));
 		if(optionalLog.isPresent())
 			return optionalLog.get();
 		System.out.println("User not found for id: "+logId);
@@ -37,5 +40,13 @@ public class LogService {
 	
 	public Log updateLog(Log log) {
 		return logRepo.save(log);
+	}
+
+	public List<LogsDto> logsByTicketId(int ticketId) {
+		return logRepo.getLogsByTicket(ticketId);
+	}
+
+	public List<LogsDto> logsByDepartmentId(int departmentId) {
+		return logRepo.getLogsByDepartment(departmentId);
 	}
 }

@@ -3,6 +3,8 @@ package com.springboot.SolutionNinjas.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.SolutionNinjas.dto.TicketDto;
+import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,7 @@ public class WorkflowService {
 	}
 
 	public Workflow getOneWorkflow(int workflowId) {
-		Optional<Workflow> optionalWorkflow = workflowRepo.findById(workflowId);
+		Optional<Workflow> optionalWorkflow = Optional.ofNullable(workflowRepo.findById(workflowId).orElseThrow(() -> new ResourceNotFoundException("Workflow", "Id", workflowId)));
 		if(optionalWorkflow.isPresent())
 			return optionalWorkflow.get();
 		System.out.println("Workflow not found for id: "+workflowId);
@@ -37,5 +39,10 @@ public class WorkflowService {
 	
 	public Workflow updateWorkflow(Workflow workflow) {
 		return workflowRepo.save(workflow);
+	}
+
+	public List<TicketDto> getTicketByDepartment(int deptId)
+	{
+		return workflowRepo.getTicketsByDepartment(deptId);
 	}
 }

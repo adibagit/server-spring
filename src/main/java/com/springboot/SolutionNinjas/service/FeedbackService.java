@@ -3,6 +3,8 @@ package com.springboot.SolutionNinjas.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.SolutionNinjas.dto.FeedbackDto;
+import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,7 @@ public class FeedbackService{
 	}
 
 	public Feedback getOneFeedback(int feedbackId) {
-		Optional<Feedback> optionalFeedback = feedrepo.findById(feedbackId);
+		Optional<Feedback> optionalFeedback = Optional.ofNullable(feedrepo.findById(feedbackId).orElseThrow(() -> new ResourceNotFoundException("Feedback", "Id", feedbackId)));
 		if(optionalFeedback.isPresent())
 			return optionalFeedback.get();
 		System.out.println("Feedback not found for id : "+feedbackId);
@@ -39,4 +41,7 @@ public class FeedbackService{
 		return feedrepo.save(feedback);
 	}
 
+	public List<FeedbackDto> getfeedbackByTicket(int ticketId) {
+		return feedrepo.getFeedbacksByTicket(ticketId);
+	}
 }

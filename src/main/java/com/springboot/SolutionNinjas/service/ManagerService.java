@@ -3,6 +3,7 @@ package com.springboot.SolutionNinjas.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class ManagerService{
 	}
 
 	public Manager getOneManager(int managerId) {
-		Optional<Manager> optionalManager = managerrepo.findById(managerId);
+		Optional<Manager> optionalManager = Optional.ofNullable(managerrepo.findById(managerId).orElseThrow(() -> new ResourceNotFoundException("Manager", "Id", managerId)));
 		if(optionalManager.isPresent())
 			return optionalManager.get();
 		System.out.println("Manager not found for id : "+managerId);

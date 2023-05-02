@@ -1,5 +1,6 @@
 package com.springboot.SolutionNinjas.controller;
 
+import com.springboot.SolutionNinjas.dto.FeedbackDto;
 import com.springboot.SolutionNinjas.model.Feedback;
 import com.springboot.SolutionNinjas.service.FeedbackService;
 import jakarta.validation.Valid;
@@ -40,6 +41,11 @@ public class FeedbackController {
     public ResponseEntity<Feedback> updateFeedback(@PathVariable int id,@RequestBody Feedback feedback ) {
         feedback.setFeedbackid(id);
         return new ResponseEntity<Feedback>(feedbackService.updateFeedback(feedback),HttpStatus.OK);
+    }
+
+    @GetMapping("/feedbackByTicket/{ticketId}")
+    public List<FeedbackDto> getFeedbackByTicket(@PathVariable int ticketId) {
+        return feedbackService.getfeedbackByTicket(ticketId);
     }
 
 }

@@ -3,6 +3,7 @@ package com.springboot.SolutionNinjas.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class DepartmentService{
 	}
 
 	public Department getOneDepartment(int id) {
-		Optional<Department> d = drepo.findById(id);
+		Optional<Department> d = Optional.ofNullable(drepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Department", "Id", id)));
 		if(d.isPresent())
 			return d.get();
 		System.out.println("Department not found for id : "+id);

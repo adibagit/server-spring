@@ -3,6 +3,8 @@ package com.springboot.SolutionNinjas.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.SolutionNinjas.dto.TicketDto;
+import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,7 @@ public class TicketService{
 	}
 
 	public Ticket getOneTicket(int ticketId) {
-		Optional<Ticket> optionalTicket = ticketrepo.findById(ticketId);
+		Optional<Ticket> optionalTicket = Optional.ofNullable(ticketrepo.findById(ticketId).orElseThrow(() -> new ResourceNotFoundException("Ticket", "Id", ticketId)));
 		if(optionalTicket.isPresent())
 			return optionalTicket.get();
 		System.out.println("Ticket not found for id : "+ticketId);
@@ -38,5 +40,21 @@ public class TicketService{
 	public Ticket updateTicket(Ticket ticket) {
 		return ticketrepo.save(ticket);
 	}
+
+	public List<TicketDto> getTicketsByUser(int userId)
+	{
+		return ticketrepo.getTicketsByUser(userId);
+	}
+
+	public List<TicketDto> getTicketsByStatus(int statusId)
+	{
+		return ticketrepo.getTicketsByStatus(statusId);
+	}
+
+	public List<TicketDto> getTicketsByProperty(int propertyId)
+	{
+		return ticketrepo.getTicketsByProperty(propertyId);
+	}
+
 
 }

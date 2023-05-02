@@ -1,5 +1,7 @@
 package com.springboot.SolutionNinjas.controller;
 
+import com.springboot.SolutionNinjas.dto.TicketDto;
+import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import com.springboot.SolutionNinjas.model.Ticket;
 import com.springboot.SolutionNinjas.service.TicketService;
 import jakarta.validation.Valid;
@@ -43,5 +45,18 @@ public class TicketController {
         ticket.setTicketid(id);
         return new ResponseEntity<Ticket>(ticketService.updateTicket(ticket),HttpStatus.OK);
     }
+
+    @GetMapping("/getTicketBy/{Id}/{fieldName}")
+    public List<TicketDto> allTicketsBy(@PathVariable int Id, @PathVariable String fieldName){
+        switch (fieldName)
+        {
+            case "property": return ticketService.getTicketsByProperty(Id);
+            case "user": return ticketService.getTicketsByUser(Id);
+            case "status": return ticketService.getTicketsByStatus(Id);
+            default:throw new ResourceNotFoundException("Tickets",fieldName,Id);
+        }
+    }
+
+
 
 }

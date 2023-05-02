@@ -3,6 +3,7 @@ package com.springboot.SolutionNinjas.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class CountryService {
 	}
 
 	public Country getOneCountry(int id) {
-		Optional<Country> c = crepo.findById(id);
+		Optional<Country> c = Optional.ofNullable(crepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Country", "Id", id)));
 		if(c.isPresent())
 			return c.get();
 		System.out.println("\"Country not found for id"+id);

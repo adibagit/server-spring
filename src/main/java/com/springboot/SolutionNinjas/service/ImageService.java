@@ -3,6 +3,8 @@ package com.springboot.SolutionNinjas.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.SolutionNinjas.dto.ImageDto;
+import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,7 @@ public class ImageService{
 	}
 
 	public Image getOneImage(int imageId) {
-		Optional<Image> optionalImage = imagerepo.findById(imageId);
+		Optional<Image> optionalImage = Optional.ofNullable(imagerepo.findById(imageId).orElseThrow(() -> new ResourceNotFoundException("Image", "Id", imageId)));
 		if(optionalImage.isPresent())
 			return optionalImage.get();
 		System.out.println("Image not found for id : "+imageId);
@@ -37,6 +39,10 @@ public class ImageService{
 
 	public Image updateImage(Image image) {
 		return imagerepo.save(image);
+	}
+
+	public List<ImageDto> allImagesByTicket(int ticketId) {
+		return imagerepo.getImageByTicket(ticketId);
 	}
 
 }

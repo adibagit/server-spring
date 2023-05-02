@@ -3,6 +3,7 @@ package com.springboot.SolutionNinjas.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class CityService{
 	}
 
 	public City getOneCity(int id) {
-		Optional<City> c = cityrepo.findById(id);
+		Optional<City> c = Optional.ofNullable(cityrepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("City", "Id", id)));
 		if(c.isPresent())
 			return c.get();
 		System.out.println("Department not found for id : "+id);

@@ -3,6 +3,7 @@ package com.springboot.SolutionNinjas.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class UserService{
 	}
 
 	public User getOneUser(int userId) {
-		Optional<User> u = userRepo.findById(userId);
+		Optional<User> u = Optional.ofNullable(userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "Id", userId)));
 		if(u.isPresent())
 			return u.get();
 		System.out.println("User not found for id: "+userId);

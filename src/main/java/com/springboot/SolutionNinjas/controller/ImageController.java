@@ -1,5 +1,6 @@
 package com.springboot.SolutionNinjas.controller;
 
+import com.springboot.SolutionNinjas.dto.ImageDto;
 import com.springboot.SolutionNinjas.model.Image;
 import com.springboot.SolutionNinjas.service.ImageService;
 import jakarta.validation.Valid;
@@ -41,5 +42,10 @@ public class ImageController {
     public ResponseEntity<Image> updateImage(@PathVariable int id,@RequestBody Image image ) {
         image.setImageid(id);
         return new ResponseEntity<Image>(imageService.updateImage(image),HttpStatus.OK);
+    }
+
+    @GetMapping("/imageByTicket/{ticketId}")
+    public List<ImageDto> getImagesByTicket(@PathVariable int ticketId) {
+        return imageService.allImagesByTicket(ticketId);
     }
 }

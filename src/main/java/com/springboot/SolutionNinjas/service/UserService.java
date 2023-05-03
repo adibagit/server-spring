@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
+import com.springboot.SolutionNinjas.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,12 @@ public class UserService{
 	private UserRepository userRepo;
 
 	public List<User> getUsers() {
-		return userRepo.findAll();
+		try {
+			return userRepo.findAll();
+		} catch (Exception e) {
+			throw new UserNotFoundException("Unable to retrieve users: " + e.getMessage(), e);
+		}
+
 	}
 
 	public User insertUser(User user) {

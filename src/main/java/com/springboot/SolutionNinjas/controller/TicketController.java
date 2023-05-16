@@ -5,6 +5,7 @@ import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import com.springboot.SolutionNinjas.model.Ticket;
 import com.springboot.SolutionNinjas.service.TicketService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class TicketController {
     }
 
     @GetMapping("/ticket/{id}")
-    public ResponseEntity<Ticket> getTicket(@PathVariable int id) {
+    public ResponseEntity<Ticket> getTicket(@PathVariable @NotNull int id) {
         return new ResponseEntity<Ticket>(ticketService.getOneTicket(id),HttpStatus.OK);
     }
 

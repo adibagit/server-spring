@@ -46,4 +46,8 @@ public class UserService{
 		return userRepo.save(user);
 	}
 
+	public String getRole(String email){ return userRepo.getUserRole(email); }
+
+	public Boolean userExist(String email){ return  userRepo.userExist(email);}
+
 }

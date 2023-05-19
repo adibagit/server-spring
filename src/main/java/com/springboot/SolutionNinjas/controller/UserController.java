@@ -43,4 +43,9 @@ public class UserController {
         user.setUserid(id);
         return new ResponseEntity<User>(userService.updateUser(user),HttpStatus.OK);
     }
+
+    @GetMapping("/userOf/{email}")
+    public ResponseEntity<List<User>> getUserByEmail(@PathVariable String email) {
+        return new ResponseEntity<List<User>>(userService.getUsersByEmailId(email),HttpStatus.OK);
+    }
 }

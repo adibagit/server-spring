@@ -29,5 +29,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
     @Query("SELECT new com.springboot.SolutionNinjas.dto.TicketDto (ticket.ticketid) FROM Workflow w where w.department.deptid=:d")
     public List<TicketDto> getTicketsByDepartment(@Param("d") int deptId);
 
+    List<User> findAllByEmailid(String emailid);
+
 
 }

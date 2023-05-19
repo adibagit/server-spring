@@ -50,4 +50,11 @@ public class UserService{
 
 	public Boolean userExist(String email){ return  userRepo.userExist(email);}
 
+	public List<User> getUsersByEmailId(String emailid) {
+		try {
+			return userRepo.findAllByEmailid(emailid);
+		} catch (Exception e) {
+			throw new UserNotFoundException("No user found for this email ID" + e.getMessage(), e);
+		}
+	}
 }

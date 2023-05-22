@@ -32,7 +32,7 @@ public class Image {
 	private String imagepath;
 		
 	@ManyToOne(fetch = FetchType.EAGER) 
-    @JoinColumn(name = "ticket_id", referencedColumnName = "ticket_id", insertable = false, updatable = false)
+    @JoinColumn(name = "ticket_id", referencedColumnName = "ticket_id")
     private Ticket ticket;
 
 }

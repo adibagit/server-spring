@@ -1,9 +1,11 @@
 package com.springboot.SolutionNinjas.controller;
 
 import com.springboot.SolutionNinjas.model.Employee;
+import com.springboot.SolutionNinjas.model.User;
 import com.springboot.SolutionNinjas.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +44,15 @@ public class EmployeeController {
     public ResponseEntity<Employee> updateEmployee(@PathVariable int id,@RequestBody Employee employee ) {
         employee.setEmpid(id);
         return new ResponseEntity<Employee>(employeeService.updateEmployee(employee),HttpStatus.OK);
+    }
+
+    @GetMapping("/employeeRequest")
+    public ResponseEntity<List<User>> getEmployeeRequest() {
+        return new ResponseEntity<List<User>>(employeeService.getEmployeeRequest(),HttpStatus.OK);
+    }
+
+    @GetMapping("/employee/isActive/{id}")
+    public ResponseEntity<Boolean> isEmployeeActive(@PathVariable int id) {
+        return new ResponseEntity<Boolean>(employeeService.isEmployeeActive(id),HttpStatus.OK);
     }
 }

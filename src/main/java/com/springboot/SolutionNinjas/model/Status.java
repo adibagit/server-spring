@@ -22,6 +22,6 @@ public class Status {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int statusid;
 	
-	@NotBlank(message="First name cannot be null")
+	@NotBlank(message="Status cannot be null")
 	private String status;
 }

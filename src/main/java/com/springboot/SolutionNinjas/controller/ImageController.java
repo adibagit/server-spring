@@ -8,7 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @RestController
@@ -17,6 +22,8 @@ import java.util.List;
 public class ImageController {
     @Autowired
     private ImageService imageService;
+
+    private static final String UPLOAD_FOLDER = "src/main/resources/uploads";
 
     @GetMapping("/image")
     public ResponseEntity<List<Image>> getImages() {
@@ -48,5 +55,22 @@ public class ImageController {
     @GetMapping("/imageByTicket/{ticketId}")
     public List<ImageDto> getImagesByTicket(@PathVariable int ticketId) {
         return imageService.allImagesByTicket(ticketId);
+    }
+
+    @PostMapping("/image/upload")
+    public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile file) {
+        try {
+            // Save the file to the upload folder
+            String filename = file.getOriginalFilename();
+            String filepath = Paths.get(UPLOAD_FOLDER, filename).toString();
+            Files.copy(file.getInputStream(), Paths.get(filepath), StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("File name : "+filename);
+            System.out.println("File path : "+filepath);
+            // Return the file path
+            return ResponseEntity.ok(filepath);
+        } catch (IOException e) {
+            // Handle the exception
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image.");
+        }
     }
 }

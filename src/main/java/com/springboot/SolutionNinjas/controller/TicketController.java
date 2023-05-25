@@ -49,7 +49,7 @@ public class TicketController {
     }
 
     @GetMapping("/getTicketBy/{Id}/{fieldName}")
-    public List<TicketDto> allTicketsBy(@PathVariable int Id, @PathVariable String fieldName){
+    public List<Ticket> allTicketsBy(@PathVariable int Id, @PathVariable String fieldName){
         switch (fieldName)
         {
             case "property": return ticketService.getTicketsByProperty(Id);

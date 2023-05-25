@@ -41,17 +41,17 @@ public class TicketService{
 		return ticketrepo.save(ticket);
 	}
 
-	public List<TicketDto> getTicketsByUser(int userId)
+	public List<Ticket> getTicketsByUser(int userId)
 	{
 		return ticketrepo.getTicketsByUser(userId);
 	}
 
-	public List<TicketDto> getTicketsByStatus(int statusId)
+	public List<Ticket> getTicketsByStatus(int statusId)
 	{
 		return ticketrepo.getTicketsByStatus(statusId);
 	}
 
-	public List<TicketDto> getTicketsByProperty(int propertyId)
+	public List<Ticket> getTicketsByProperty(int propertyId)
 	{
 		return ticketrepo.getTicketsByProperty(propertyId);
 	}

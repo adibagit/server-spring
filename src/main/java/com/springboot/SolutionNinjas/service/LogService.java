@@ -42,8 +42,8 @@ public class LogService {
 		return logRepo.save(log);
 	}
 
-	public List<LogsDto> logsByTicketId(int ticketId) {
-		return logRepo.getLogsByTicket(ticketId);
+	public List<LogsDto> logsByWorkflowId(int workflowId) {
+		return logRepo.getLogsByWorkflow(workflowId);
 	}
 
 	public List<LogsDto> logsByDepartmentId(int departmentId) {

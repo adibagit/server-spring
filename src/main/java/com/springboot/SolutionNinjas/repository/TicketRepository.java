@@ -31,4 +31,7 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
 
     @Query("SELECT t FROM Ticket t where t.status.statusid=:statusId")
     public List<Ticket> getTicketsByStatus(@Param("statusId") int statusId);
+
+    @Query("SELECT new com.springboot.SolutionNinjas.dto.TicketDto (ticket.ticketid) FROM Workflow w where w.department.deptid=:d")
+    public List<TicketDto> getTicketsByDepartment(@Param("d") int deptId);
 }

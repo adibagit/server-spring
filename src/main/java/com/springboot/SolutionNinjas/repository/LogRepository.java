@@ -13,8 +13,8 @@ import java.util.List;
 
 @Repository
 public interface LogRepository extends JpaRepository<Log, Integer> {
-    @Query("SELECT new com.springboot.SolutionNinjas.dto.LogsDto (l) FROM Log l where l.ticket.ticketid=:t")
-    List<LogsDto> getLogsByTicket(@Param("t") int ticketId);
+    @Query("SELECT new com.springboot.SolutionNinjas.dto.LogsDto (l) FROM Log l where l.workflow.workflowid=:t")
+    List<LogsDto> getLogsByWorkflow(@Param("t") int workflowId);
 
     @Query("SELECT new com.springboot.SolutionNinjas.dto.LogsDto (l) FROM Log l where l.employee.department.deptid=:departmentId")
     List<LogsDto> getLogsByDepartment(@Param("departmentId") int departmentId);

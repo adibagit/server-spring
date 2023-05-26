@@ -59,6 +59,9 @@ public class TicketController {
         }
     }
 
-
+    @GetMapping("/getTicketByDepartment/{departmentId}")
+    public List<TicketDto> allTicketsByDepartment(@PathVariable int departmentId){
+        return ticketService.getTicketByDepartment(departmentId);
+    }
 
 }

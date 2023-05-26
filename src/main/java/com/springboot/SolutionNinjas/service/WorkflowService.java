@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.springboot.SolutionNinjas.dto.TicketDto;
 import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
+import com.springboot.SolutionNinjas.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,8 +42,8 @@ public class WorkflowService {
 		return workflowRepo.save(workflow);
 	}
 
-	public List<TicketDto> getTicketByDepartment(int deptId)
-	{
-		return workflowRepo.getTicketsByDepartment(deptId);
+	public List<Workflow> getWorkflowsByTicket(Ticket ticketId) {
+		return workflowRepo.findAllByTicket(ticketId);
 	}
+
 }

@@ -3,6 +3,7 @@ package com.springboot.SolutionNinjas.controller;
 import com.springboot.SolutionNinjas.dto.DepartmentWorkflowResponse;
 import com.springboot.SolutionNinjas.dto.TicketDto;
 import com.springboot.SolutionNinjas.dto.WorkflowDto;
+import com.springboot.SolutionNinjas.model.Ticket;
 import com.springboot.SolutionNinjas.model.Workflow;
 import com.springboot.SolutionNinjas.service.WorkflowService;
 import jakarta.validation.Valid;
@@ -48,9 +49,9 @@ public class WorkflowController {
         return new ResponseEntity<Workflow>(workflowService.updateWorkflow(workflow),HttpStatus.OK);
     }
 
-    @GetMapping("/getTicketByDepartment/{departmentId}")
-    public List<TicketDto> allTicketsByDepartment(@PathVariable int departmentId){
-        return workflowService.getTicketByDepartment(departmentId);
+    @GetMapping("/workflowByTicket/{id}")
+    public ResponseEntity<List<Workflow>> getWorkflowByTicket(@PathVariable Ticket id) {
+        return new ResponseEntity<List<Workflow>>(workflowService.getWorkflowsByTicket(id),HttpStatus.OK);
     }
 
 }

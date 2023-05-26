@@ -56,5 +56,10 @@ public class TicketService{
 		return ticketrepo.getTicketsByProperty(propertyId);
 	}
 
+	public List<TicketDto> getTicketByDepartment(int deptId)
+	{
+		return ticketrepo.getTicketsByDepartment(deptId);
+	}
+
 
 }

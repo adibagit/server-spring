@@ -28,8 +28,8 @@ public class Log {
 	private int logid;
 	
 	@ManyToOne
-    @JoinColumn(name = "ticket_id")
-    private Ticket ticket;
+    @JoinColumn(name = "workflow_id")
+    private Workflow workflow;
 	
 	@ManyToOne
     @JoinColumn(name = "emp_id")

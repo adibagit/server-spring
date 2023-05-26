@@ -54,4 +54,9 @@ public class WorkflowController {
         return new ResponseEntity<List<Workflow>>(workflowService.getWorkflowsByTicket(id),HttpStatus.OK);
     }
 
+    @GetMapping("/workflowExist/{ticketid}")
+    public ResponseEntity<Boolean> workflowExist(@PathVariable Ticket ticketid) {
+        return new ResponseEntity<Boolean>(workflowService.workflowExist(ticketid), HttpStatus.OK);
+    }
+
 }

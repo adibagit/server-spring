@@ -46,4 +46,6 @@ public class WorkflowService {
 		return workflowRepo.findAllByTicket(ticketId);
 	}
 
+	public Boolean workflowExist(Ticket ticketId){ return  workflowRepo.workflowExist(ticketId);}
+
 }

@@ -30,4 +30,7 @@ public interface WorkflowRepository extends JpaRepository<Workflow, Integer> {
     public List<WorkflowDto> getWorkflowsT(@Param("t") int ticketId);
 
     List<Workflow> findAllByTicket(Ticket ticketid);
+
+    @Query("SELECT CASE WHEN COUNT(w) > 0 THEN true ELSE false END FROM Workflow w WHERE w.ticket = :ticketid")
+    public Boolean workflowExist(@Param("ticketid") Ticket ticketId);
 }

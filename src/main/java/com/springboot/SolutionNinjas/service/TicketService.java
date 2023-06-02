@@ -62,7 +62,4 @@ public class TicketService{
 	}
 
 
-	public void TicketStatusChange(int ticketId, int statusId) {
-		ticketrepo.changeTicketStatus(statusId,ticketId);
-	}
 }

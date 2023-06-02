@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
+import com.springboot.SolutionNinjas.model.Department;
+import com.springboot.SolutionNinjas.model.Manager;
 import com.springboot.SolutionNinjas.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,7 +49,6 @@ public class EmployeeService{
 
 	public Boolean isEmployeeActive(int userId){ return emprepo.isEmployeeActive(userId);}
 
-    public int empIdFromUserId(int userId) {
-		return emprepo.getEmpIdFromUserId(userId);
-    }
+	public List<Employee> getEmployeesByDept(Department deptId) { return emprepo.findAllByDepartment(deptId); }
+
 }

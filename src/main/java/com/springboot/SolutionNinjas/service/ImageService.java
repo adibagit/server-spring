@@ -45,4 +45,8 @@ public class ImageService{
 		return imagerepo.getImageByTicket(ticketId);
 	}
 
+//	public void deleteImageByTicket(int ticketId) {
+//		imagerepo.deleteImageByTicket(ticketId);
+//	}
+
 }

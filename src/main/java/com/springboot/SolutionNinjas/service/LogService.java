@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.springboot.SolutionNinjas.dto.LogsDto;
 import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
 import com.springboot.SolutionNinjas.model.Ticket;
+import com.springboot.SolutionNinjas.model.Workflow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,7 +51,5 @@ public class LogService {
 		return logRepo.getLogsByDepartment(departmentId);
 	}
 
-    public List<Log> getLogsByEmployee(int empId, int statusId) {
-		return logRepo.getLogsByEmp(empId,statusId);
-    }
+	public Boolean isWorkflowAssigned(Workflow id){ return logRepo.isWorkflowAssigned(id);}
 }

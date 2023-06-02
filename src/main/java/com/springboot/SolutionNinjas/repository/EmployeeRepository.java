@@ -1,6 +1,8 @@
 package com.springboot.SolutionNinjas.repository;
 
+import com.springboot.SolutionNinjas.model.Department;
 import com.springboot.SolutionNinjas.model.User;
+import com.springboot.SolutionNinjas.model.Workflow;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,6 +21,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query("SELECT CASE WHEN COUNT(employee) > 0 THEN true ELSE false END FROM Employee employee WHERE employee.user.userid = :userId")
     boolean isEmployeeActive(@Param("userId") int userId);
 
-    @Query("SELECT empid FROM Employee e WHERE e.user.userid = :userId")
-    public int getEmpIdFromUserId(int userId);
+    List<Employee> findAllByDepartment(Department deptId);
 }

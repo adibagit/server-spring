@@ -48,4 +48,9 @@ public class UserController {
     public ResponseEntity<List<User>> getUserByEmail(@PathVariable String email) {
         return new ResponseEntity<List<User>>(userService.getUsersByEmailId(email),HttpStatus.OK);
     }
+
+    @GetMapping("/usersByRole/{role}")
+    public ResponseEntity<List<User>> getUsersByRole(@PathVariable String role) {
+        return new ResponseEntity<List<User>>(userService.getUsersByRole(role),HttpStatus.OK);
+    }
 }

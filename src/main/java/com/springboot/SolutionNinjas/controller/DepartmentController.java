@@ -44,8 +44,8 @@ public class DepartmentController {
         return new ResponseEntity<Department>(departmentService.updateDepartment(dept),HttpStatus.OK);
     }
 
-    @GetMapping("/getDeparmentByEmployee/{userId}")
-    public int getDepartmentOfEmp(@PathVariable int userId) {
-        return departmentService.getDeptByEmpId(userId);
+    @GetMapping("/departments/withoutManager")
+    public ResponseEntity<List<Department>> getDepartmentWithNoManager() {
+        return new ResponseEntity<List<Department>>(departmentService.getDepartmentsWithoutManager(), HttpStatus.OK);
     }
 }

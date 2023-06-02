@@ -3,6 +3,7 @@ package com.springboot.SolutionNinjas.controller;
 import com.springboot.SolutionNinjas.dto.DepartmentWorkflowResponse;
 import com.springboot.SolutionNinjas.dto.TicketDto;
 import com.springboot.SolutionNinjas.dto.WorkflowDto;
+import com.springboot.SolutionNinjas.model.Department;
 import com.springboot.SolutionNinjas.model.Ticket;
 import com.springboot.SolutionNinjas.model.Workflow;
 import com.springboot.SolutionNinjas.service.WorkflowService;
@@ -59,15 +60,9 @@ public class WorkflowController {
         return new ResponseEntity<Boolean>(workflowService.workflowExist(ticketid), HttpStatus.OK);
     }
 
-    @GetMapping("/GetDepartmentTickets/{departmentId}")
-    public ResponseEntity<List<Workflow>> getWorkflowsByDept(@PathVariable int departmentId) {
-        return new ResponseEntity<List<Workflow>>(workflowService.getDeparmentTickets(departmentId),HttpStatus.OK);
-    }
-
-    @PutMapping("/changeWorkflowStatus/{workflowId}/{statusId}")
-    public String updateWorkflowStatus(@PathVariable int workflowId,@PathVariable int statusId) {
-        workflowService.WorkflowStatusChange(workflowId,statusId);
-        return "it works";
+    @GetMapping("/workflowByDept/{id}")
+    public ResponseEntity<List<Workflow>> getWorkflowByDepartment(@PathVariable Department id) {
+        return new ResponseEntity<List<Workflow>>(workflowService.getWorkflowsByDepartment(id),HttpStatus.OK);
     }
 
 }

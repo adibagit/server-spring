@@ -3,9 +3,9 @@ package com.springboot.SolutionNinjas.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.springboot.SolutionNinjas.dto.DepartmentWorkflowResponse;
 import com.springboot.SolutionNinjas.dto.TicketDto;
 import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
+import com.springboot.SolutionNinjas.model.Department;
 import com.springboot.SolutionNinjas.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,12 +49,8 @@ public class WorkflowService {
 
 	public Boolean workflowExist(Ticket ticketId){ return  workflowRepo.workflowExist(ticketId);}
 
-    public List<Workflow> getDeparmentTickets(int departmentId) {
-		int statusId=2;
-		return workflowRepo.getDeptTickets(statusId,departmentId);
-    }
+	public List<Workflow> getWorkflowsByDepartment(Department deptId) {
+		return workflowRepo.findAllByDepartment(deptId);
+	}
 
-    public void WorkflowStatusChange(int workflowId, int statusId) {
-		workflowRepo.changeWorkflowStatus(statusId,workflowId);
-    }
 }

@@ -61,4 +61,8 @@ public class EmployeeController {
     public ResponseEntity<List<Employee>> getEmployeesByDept(@PathVariable Department id) {
         return new ResponseEntity<List<Employee>>(employeeService.getEmployeesByDept(id),HttpStatus.OK);
     }
+    @GetMapping("/employeeIdFromUserid/{userId}")
+    public int empIdFromUserId(@PathVariable int userId) {
+       return employeeService.empIdFromUserId(userId);
+    }
 }

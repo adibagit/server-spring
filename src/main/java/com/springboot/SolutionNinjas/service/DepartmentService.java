@@ -44,4 +44,7 @@ public class DepartmentService{
 		return drepo.getDepartmentWithoutManager();
 	}
 
+    public int getDeptByEmpId(int userId) {
+		return drepo.getDepart(userId);
+    }
 }

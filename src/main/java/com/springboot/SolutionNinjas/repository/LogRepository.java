@@ -23,4 +23,6 @@ public interface LogRepository extends JpaRepository<Log, Integer> {
     @Query("SELECT CASE WHEN COUNT(l) > 0 THEN true ELSE false END FROM Log l WHERE l.workflow = :workflowid AND l.status = 11")
     public Boolean isWorkflowAssigned(@Param("workflowid") Workflow workflowId);
 
+    @Query("SELECT l FROM Log l where l.employee.empid=:empId and l.status.statusid=:statusId")
+    List<Log> getLogsByEmp(@Param("empId") int empId,@Param("statusId") int statusId);
 }

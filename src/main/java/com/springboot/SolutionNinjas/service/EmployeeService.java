@@ -51,4 +51,7 @@ public class EmployeeService{
 
 	public List<Employee> getEmployeesByDept(Department deptId) { return emprepo.findAllByDepartment(deptId); }
 
+    public int empIdFromUserId(int userId) {
+		return emprepo.getEmpIdFromUserId(userId);
+    }
 }

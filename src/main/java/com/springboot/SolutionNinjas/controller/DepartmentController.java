@@ -48,4 +48,8 @@ public class DepartmentController {
     public ResponseEntity<List<Department>> getDepartmentWithNoManager() {
         return new ResponseEntity<List<Department>>(departmentService.getDepartmentsWithoutManager(), HttpStatus.OK);
     }
+    @GetMapping("/getDeparmentByEmployee/{userId}")
+    public int getDepartmentOfEmp(@PathVariable int userId) {
+        return departmentService.getDeptByEmpId(userId);
+    }
 }

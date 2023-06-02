@@ -52,4 +52,8 @@ public class LogService {
 	}
 
 	public Boolean isWorkflowAssigned(Workflow id){ return logRepo.isWorkflowAssigned(id);}
+
+    public List<Log> getLogsByEmployee(int empId, int statusId) {
+		return logRepo.getLogsByEmp(empId,statusId);
+    }
 }

@@ -8,11 +8,14 @@ import com.springboot.SolutionNinjas.model.Department;
 import com.springboot.SolutionNinjas.model.Ticket;
 import com.springboot.SolutionNinjas.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.springboot.SolutionNinjas.model.Workflow;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Repository
@@ -36,4 +39,14 @@ public interface WorkflowRepository extends JpaRepository<Workflow, Integer> {
     public Boolean workflowExist(@Param("ticketid") Ticket ticketId);
 
     List<Workflow> findAllByDepartment(Department deptId);
+
+    @Query("SELECT w FROM Workflow w where w.status.statusid=:statusId and w.department.deptid=:deptId")
+    public List<Workflow> getDeptTickets(@Param("statusId") int statusId,@Param("deptId") int departmentId);
+
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Workflow w set w.status.statusid=:statusId where w.workflowid=:workflowId")
+    public void changeWorkflowStatus(@Param("statusId") int statusId,@Param("workflowId")int workflowId);
+
 }

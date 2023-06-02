@@ -22,4 +22,9 @@ public interface DepartmentRepository extends JpaRepository<Department, Integer>
     @Query("SELECT d FROM Department d where d.deptid NOT IN (SELECT m.department.deptid FROM Manager m)")
     public List<Department> getDepartmentWithoutManager();
 
+
+    @Query("SELECT new com.springboot.SolutionNinjas.dto.DepartmentWorkflowResponse (w) FROM Workflow w where w.workflowid=:t")
+    public List<DepartmentWorkflowResponse> getWorkflowDetails(@Param("t") int ticketId);
+    @Query("SELECT e.department.deptid FROM Employee e where user.userid=:userId")
+    public int getDepart(@Param("userId") int userId);
 }

@@ -69,4 +69,10 @@ public class TicketController {
         return ticketService.getTicketByDepartment(departmentId);
     }
 
+    @PutMapping("/changeTicketStatus/{ticketId}/{statusId}")
+    public String updateTicketStatus(@PathVariable int ticketId,@PathVariable int statusId) {
+        ticketService.TicketStatusChange(ticketId,statusId);
+        return "it works";
+    }
+
 }

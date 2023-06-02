@@ -65,4 +65,15 @@ public class WorkflowController {
         return new ResponseEntity<List<Workflow>>(workflowService.getWorkflowsByDepartment(id),HttpStatus.OK);
     }
 
+    @GetMapping("/GetDepartmentTickets/{departmentId}")
+    public ResponseEntity<List<Workflow>> getWorkflowsByDept(@PathVariable int departmentId) {
+        return new ResponseEntity<List<Workflow>>(workflowService.getDeparmentTickets(departmentId),HttpStatus.OK);
+    }
+
+    @PutMapping("/changeWorkflowStatus/{workflowId}/{statusId}")
+    public String updateWorkflowStatus(@PathVariable int workflowId,@PathVariable int statusId) {
+        workflowService.WorkflowStatusChange(workflowId,statusId);
+        return "it works";
+    }
+
 }

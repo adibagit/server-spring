@@ -22,4 +22,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     boolean isEmployeeActive(@Param("userId") int userId);
 
     List<Employee> findAllByDepartment(Department deptId);
+    @Query("SELECT empid FROM Employee e WHERE e.user.userid = :userId")
+    public int getEmpIdFromUserId(int userId);
 }

@@ -1,7 +1,10 @@
 package com.springboot.SolutionNinjas.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -19,13 +22,15 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Getter
 @Setter
 @ToString 
 @Entity
 @Table(name="users")
-public class User {
+public class User implements UserDetails {
 	@Column(name="user_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,6 +68,42 @@ public class User {
 	@UpdateTimestamp
 	@Column(name="last_modified")
 	private Date lastmodified;
-   	
-    
+
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Set<Authority> set=new HashSet<>();
+		set.add(new Authority(this.getUsertype()));
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		return null;
+	}
+
+	@Override
+	public String getUsername() {
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return false;
+	}
 }

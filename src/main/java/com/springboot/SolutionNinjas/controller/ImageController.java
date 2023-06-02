@@ -62,20 +62,26 @@ public class ImageController {
         return imageService.allImagesByTicket(ticketId);
     }
 
-        @PostMapping("/image/upload")
-        public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile file) {
-            try {
-                // Save the file to the upload folder
-                String filename = file.getOriginalFilename();
-                String filepath = Paths.get(UPLOAD_FOLDER, filename).toString();
-                Files.copy(file.getInputStream(), Paths.get(filepath), StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("File name : "+filename);
-                System.out.println("File path : "+filepath);
-                // Return the file path
-                return ResponseEntity.ok(filepath);
-            } catch (IOException e) {
-                // Handle the exception
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image.");
-            }
+    @PostMapping("/image/upload")
+    public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile file) {
+        try {
+            // Save the file to the upload folder
+            String filename = file.getOriginalFilename();
+            String filepath = Paths.get(UPLOAD_FOLDER, filename).toString();
+            Files.copy(file.getInputStream(), Paths.get(filepath), StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("File name : "+filename);
+            System.out.println("File path : "+filepath);
+            // Return the file path
+            return ResponseEntity.ok(filepath);
+        } catch (IOException e) {
+            // Handle the exception
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image.");
         }
+    }
+
+//    @DeleteMapping("/image/{id}")
+//    public String deleteImageByTicket(@PathVariable int id) {
+//        imageService.deleteImageByTicket(id);
+//        return "Images having ticketid : "+id+" has been deleted successfully.";
+//    }
 }

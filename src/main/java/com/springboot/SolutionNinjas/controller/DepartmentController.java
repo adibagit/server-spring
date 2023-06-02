@@ -43,4 +43,9 @@ public class DepartmentController {
         dept.setDeptid(id);
         return new ResponseEntity<Department>(departmentService.updateDepartment(dept),HttpStatus.OK);
     }
+
+    @GetMapping("/departments/withoutManager")
+    public ResponseEntity<List<Department>> getDepartmentWithNoManager() {
+        return new ResponseEntity<List<Department>>(departmentService.getDepartmentsWithoutManager(), HttpStatus.OK);
+    }
 }

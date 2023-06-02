@@ -1,6 +1,7 @@
 package com.springboot.SolutionNinjas.controller;
 
 import com.springboot.SolutionNinjas.model.Manager;
+import com.springboot.SolutionNinjas.model.User;
 import com.springboot.SolutionNinjas.service.ManagerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,11 @@ public class ManagerController {
     public ResponseEntity<Manager> updateManager(@PathVariable int id,@RequestBody Manager manager ) {
         manager.setManagerid(id);
         return new ResponseEntity<Manager>(managerService.updateManager(manager),HttpStatus.OK);
+    }
+
+    @GetMapping("/managerByUser/{id}")
+    public ResponseEntity<List<Manager>> getManagerByUser(@PathVariable User id) {
+        return new ResponseEntity<List<Manager>>(managerService.getManagerByUser(id),HttpStatus.OK);
     }
 
 }

@@ -2,6 +2,7 @@ package com.springboot.SolutionNinjas.controller;
 
 import com.springboot.SolutionNinjas.dto.LogsDto;
 import com.springboot.SolutionNinjas.model.Log;
+import com.springboot.SolutionNinjas.model.Workflow;
 import com.springboot.SolutionNinjas.service.LogService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,4 +55,9 @@ public class LogController {
     public List<LogsDto> getLogsByDepartment(@PathVariable int departmentId) {
         return logService.logsByDepartmentId(departmentId);
     }
+
+//    @GetMapping("/isAssigned/{workflowId}")  //We are not using this API anymore
+//    public Boolean isWorkflowAssigned(@PathVariable Workflow workflowId) {
+//        return logService.isWorkflowAssigned(workflowId);
+//    }
 }

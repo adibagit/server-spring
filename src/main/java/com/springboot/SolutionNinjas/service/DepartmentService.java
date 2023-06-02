@@ -40,4 +40,8 @@ public class DepartmentService{
 		return drepo.save(d);
 	}
 
+	public List<Department> getDepartmentsWithoutManager() {
+		return drepo.getDepartmentWithoutManager();
+	}
+
 }

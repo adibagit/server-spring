@@ -1,5 +1,6 @@
 package com.springboot.SolutionNinjas.controller;
 
+import com.springboot.SolutionNinjas.model.Department;
 import com.springboot.SolutionNinjas.model.Employee;
 import com.springboot.SolutionNinjas.model.User;
 import com.springboot.SolutionNinjas.service.EmployeeService;
@@ -54,5 +55,10 @@ public class EmployeeController {
     @GetMapping("/employee/isActive/{id}")
     public ResponseEntity<Boolean> isEmployeeActive(@PathVariable int id) {
         return new ResponseEntity<Boolean>(employeeService.isEmployeeActive(id),HttpStatus.OK);
+    }
+
+    @GetMapping("/employeeByDept/{id}")
+    public ResponseEntity<List<Employee>> getEmployeesByDept(@PathVariable Department id) {
+        return new ResponseEntity<List<Employee>>(employeeService.getEmployeesByDept(id),HttpStatus.OK);
     }
 }

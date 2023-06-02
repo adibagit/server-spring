@@ -4,6 +4,7 @@ import com.springboot.SolutionNinjas.dto.AdminWorkflowsDTO;
 import com.springboot.SolutionNinjas.dto.DepartmentWorkflowResponse;
 import com.springboot.SolutionNinjas.dto.TicketDto;
 import com.springboot.SolutionNinjas.dto.WorkflowDto;
+import com.springboot.SolutionNinjas.model.Department;
 import com.springboot.SolutionNinjas.model.Ticket;
 import com.springboot.SolutionNinjas.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,4 +34,6 @@ public interface WorkflowRepository extends JpaRepository<Workflow, Integer> {
 
     @Query("SELECT CASE WHEN COUNT(w) > 0 THEN true ELSE false END FROM Workflow w WHERE w.ticket = :ticketid")
     public Boolean workflowExist(@Param("ticketid") Ticket ticketId);
+
+    List<Workflow> findAllByDepartment(Department deptId);
 }

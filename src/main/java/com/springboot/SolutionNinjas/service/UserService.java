@@ -57,4 +57,12 @@ public class UserService{
 			throw new UserNotFoundException("No user found for this email ID" + e.getMessage(), e);
 		}
 	}
+
+	public List<User> getUsersByRole(String role) {
+		try {
+			return userRepo.findAllByUsertype(role);
+		} catch (Exception e) {
+			throw new UserNotFoundException("No user found for this email ID" + e.getMessage(), e);
+		}
+	}
 }

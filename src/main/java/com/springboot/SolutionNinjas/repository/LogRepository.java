@@ -19,4 +19,6 @@ public interface LogRepository extends JpaRepository<Log, Integer> {
     @Query("SELECT new com.springboot.SolutionNinjas.dto.LogsDto (l) FROM Log l where l.employee.department.deptid=:departmentId")
     List<LogsDto> getLogsByDepartment(@Param("departmentId") int departmentId);
 
+    @Query("SELECT l FROM Log l where l.employee.empid=:empId and l.status.statusid=:statusId")
+    List<Log> getLogsByEmp(@Param("empId") int empId,@Param("statusId") int statusId);
 }

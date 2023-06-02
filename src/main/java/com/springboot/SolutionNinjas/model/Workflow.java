@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString 
 @Entity
 @Table(name="workflows")
-public class 	Workflow {
+public class Workflow {
 
 	@Column(name="workflow_id")
 	@Id

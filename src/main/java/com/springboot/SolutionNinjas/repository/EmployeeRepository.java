@@ -19,4 +19,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query("SELECT CASE WHEN COUNT(employee) > 0 THEN true ELSE false END FROM Employee employee WHERE employee.user.userid = :userId")
     boolean isEmployeeActive(@Param("userId") int userId);
 
+    @Query("SELECT empid FROM Employee e WHERE e.user.userid = :userId")
+    public int getEmpIdFromUserId(int userId);
 }

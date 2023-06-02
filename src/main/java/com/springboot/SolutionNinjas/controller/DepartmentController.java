@@ -43,4 +43,9 @@ public class DepartmentController {
         dept.setDeptid(id);
         return new ResponseEntity<Department>(departmentService.updateDepartment(dept),HttpStatus.OK);
     }
+
+    @GetMapping("/getDeparmentByEmployee/{userId}")
+    public int getDepartmentOfEmp(@PathVariable int userId) {
+        return departmentService.getDeptByEmpId(userId);
+    }
 }

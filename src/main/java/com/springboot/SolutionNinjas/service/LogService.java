@@ -49,8 +49,4 @@ public class LogService {
 	public List<LogsDto> logsByDepartmentId(int departmentId) {
 		return logRepo.getLogsByDepartment(departmentId);
 	}
-
-    public List<Log> getLogsByEmployee(int empId, int statusId) {
-		return logRepo.getLogsByEmp(empId,statusId);
-    }
 }

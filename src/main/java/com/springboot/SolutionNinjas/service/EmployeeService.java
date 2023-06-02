@@ -47,7 +47,4 @@ public class EmployeeService{
 
 	public Boolean isEmployeeActive(int userId){ return emprepo.isEmployeeActive(userId);}
 
-    public int empIdFromUserId(int userId) {
-		return emprepo.getEmpIdFromUserId(userId);
-    }
 }

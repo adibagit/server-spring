@@ -54,10 +54,4 @@ public class LogController {
     public List<LogsDto> getLogsByDepartment(@PathVariable int departmentId) {
         return logService.logsByDepartmentId(departmentId);
     }
-
-    @GetMapping("/logsByEmployee/{empId}/{statusId}")
-    public ResponseEntity<List<Log>> getLogsByEmp(@PathVariable int empId,@PathVariable int statusId) {
-        return new ResponseEntity<List<Log>>(logService.getLogsByEmployee(empId,statusId), HttpStatus.OK);
-    }
-
 }

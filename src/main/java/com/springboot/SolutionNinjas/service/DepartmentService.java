@@ -40,7 +40,4 @@ public class DepartmentService{
 		return drepo.save(d);
 	}
 
-    public int getDeptByEmpId(int userId) {
-		return drepo.getDepart(userId);
-    }
 }

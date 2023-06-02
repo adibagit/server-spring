@@ -55,9 +55,4 @@ public class EmployeeController {
     public ResponseEntity<Boolean> isEmployeeActive(@PathVariable int id) {
         return new ResponseEntity<Boolean>(employeeService.isEmployeeActive(id),HttpStatus.OK);
     }
-
-    @GetMapping("/employeeIdFromUserid/{userId}")
-    public int empIdFromUserId(@PathVariable int userId) {
-       return employeeService.empIdFromUserId(userId);
-    }
 }

@@ -76,4 +76,9 @@ public class WorkflowController {
         return "it works";
     }
 
+    @PutMapping("/updateStatus/{ticketId}/{priority}/{statusId}")
+    public ResponseEntity<String> updateStatus(@PathVariable int ticketId,@PathVariable int priority,@PathVariable int statusId) {
+        workflowService.updateStatus(ticketId,priority,statusId);
+        return new ResponseEntity<String>( workflowService.updateStatus(ticketId,priority,statusId), HttpStatus.OK);
+    }
 }

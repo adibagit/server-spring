@@ -51,8 +51,9 @@ public class WorkflowService {
 	public Boolean workflowExist(Ticket ticketId){ return  workflowRepo.workflowExist(ticketId);}
 
     public List<Workflow> getDeparmentTickets(int departmentId) {
-		int statusId=2;
-		return workflowRepo.getDeptTickets(statusId,departmentId);
+		//int statusId=2;
+		//return workflowRepo.getDeptTickets(statusId,departmentId);
+		return workflowRepo.getDeptTickets(departmentId);
     }
 
     public void WorkflowStatusChange(int workflowId, int statusId) {
@@ -62,4 +63,8 @@ public class WorkflowService {
 		return workflowRepo.findAllByDepartment(deptId);
 	}
 
+	public String updateStatus(int ticketId,int priority, int statusId) {
+		workflowRepo.updateStatus(ticketId,priority,statusId);
+		return "Workflow status updated";
+	}
 }

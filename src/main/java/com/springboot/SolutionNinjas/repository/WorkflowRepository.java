@@ -40,13 +40,20 @@ public interface WorkflowRepository extends JpaRepository<Workflow, Integer> {
 
     List<Workflow> findAllByDepartment(Department deptId);
 
-    @Query("SELECT w FROM Workflow w where w.status.statusid=:statusId and w.department.deptid=:deptId")
-    public List<Workflow> getDeptTickets(@Param("statusId") int statusId,@Param("deptId") int departmentId);
+    @Query("SELECT w FROM Workflow w where w.department.deptid=:deptId")
+    public List<Workflow> getDeptTickets(@Param("deptId") int departmentId);
 
+//    @Query("SELECT w FROM Workflow w where w.status.statusid=:statusId and w.department.deptid=:deptId")
+//    public List<Workflow> getDeptTickets(@Param("statusId") int statusId,@Param("deptId") int departmentId);
 
     @Transactional
     @Modifying
     @Query("UPDATE Workflow w set w.status.statusid=:statusId where w.workflowid=:workflowId")
     public void changeWorkflowStatus(@Param("statusId") int statusId,@Param("workflowId")int workflowId);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Workflow w set w.status.statusid=:statusId where w.ticket.ticketid=:ticketId AND w.priority=:priority")
+    public void updateStatus(@Param("ticketId")int ticketId,@Param("priority")int priority,@Param("statusId") int statusId);
 
 }

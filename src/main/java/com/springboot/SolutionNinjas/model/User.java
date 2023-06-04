@@ -22,15 +22,13 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Getter
 @Setter
 @ToString 
 @Entity
 @Table(name="users")
-public class User implements UserDetails {
+public class User  {
 	@Column(name="user_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,40 +68,40 @@ public class User implements UserDetails {
 	private Date lastmodified;
 
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Set<Authority> set=new HashSet<>();
-		set.add(new Authority(this.getUsertype()));
-		return null;
-	}
+//	@Override
+//	public Collection<? extends GrantedAuthority> getAuthorities() {
+//		Set<Authority> set=new HashSet<>();
+//		set.add(new Authority(this.getUsertype()));
+//		return null;
+//	}
 
-	@Override
-	public String getPassword() {
-		return null;
-	}
-
-	@Override
-	public String getUsername() {
-		return null;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return false;
-	}
+//	@Override
+//	public String getPassword() {
+//		return null;
+//	}
+//
+//	@Override
+//	public String getUsername() {
+//		return null;
+//	}
+//
+//	@Override
+//	public boolean isAccountNonExpired() {
+//		return true;
+//	}
+//
+//	@Override
+//	public boolean isAccountNonLocked() {
+//		return false;
+//	}
+//
+//	@Override
+//	public boolean isCredentialsNonExpired() {
+//		return true;
+//	}
+//
+//	@Override
+//	public boolean isEnabled() {
+//		return false;
+//	}
 }

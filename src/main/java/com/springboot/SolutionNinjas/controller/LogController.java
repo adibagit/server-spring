@@ -46,7 +46,7 @@ public class LogController {
         return new ResponseEntity<Log>(logService.updateLog(log),HttpStatus.OK);
     }
 
-        @GetMapping("/logsByWorkflow/{workflowId}")
+    @GetMapping("/logsByWorkflow/{workflowId}")
     public List<LogsDto> getLogsByTicket(@PathVariable int workflowId) {
         return logService.logsByWorkflowId(workflowId);
     }

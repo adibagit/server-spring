@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import com.springboot.SolutionNinjas.dto.FeedbackDto;
 import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
+import com.springboot.SolutionNinjas.model.Ticket;
+import com.springboot.SolutionNinjas.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +45,13 @@ public class FeedbackService{
 
 	public List<FeedbackDto> getfeedbackByTicket(int ticketId) {
 		return feedrepo.getFeedbacksByTicket(ticketId);
+	}
+
+	public Boolean feedbackExist(int userId, int ticketId){
+		return  feedrepo.feedbackExist(userId,ticketId);
+	}
+
+	public List<Feedback> getFeedbackByUserTicket(User userId, Ticket ticketId) {
+		return feedrepo.findAllByUserAndTicket(userId,ticketId);
 	}
 }

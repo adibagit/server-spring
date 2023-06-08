@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.springboot.SolutionNinjas.dto.LogsDto;
 import com.springboot.SolutionNinjas.exception.ResourceNotFoundException;
+import com.springboot.SolutionNinjas.model.Employee;
 import com.springboot.SolutionNinjas.model.Ticket;
 import com.springboot.SolutionNinjas.model.Workflow;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,4 +57,8 @@ public class LogService {
     public List<Log> getLogsByEmployee(int empId, int statusId) {
 		return logRepo.getLogsByEmp(empId,statusId);
     }
+
+	public List<Log> getAssigneeLogs(int workflowId) {
+		return logRepo.getAssigneeLog(workflowId);
+	}
 }

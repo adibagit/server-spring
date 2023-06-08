@@ -66,4 +66,9 @@ public class LogController {
 //    public Boolean isWorkflowAssigned(@PathVariable Workflow workflowId) {
 //        return logService.isWorkflowAssigned(workflowId);
 //    }
+
+    @GetMapping("/log/getAssignee/{workflowId}")
+    public ResponseEntity<List<Log>> getAssigneeLogs(@PathVariable int workflowId) {
+        return new ResponseEntity<List<Log>>(logService.getAssigneeLogs(workflowId), HttpStatus.OK);
+    }
 }

@@ -25,4 +25,7 @@ public interface LogRepository extends JpaRepository<Log, Integer> {
 
     @Query("SELECT l FROM Log l where l.employee.empid=:empId and l.status.statusid=:statusId")
     List<Log> getLogsByEmp(@Param("empId") int empId,@Param("statusId") int statusId);
+
+    @Query("SELECT l FROM Log l where l.workflow.workflowid=:workflowid AND status.statusid = 11") //11 means assigned
+    public List<Log> getAssigneeLog(@Param("workflowid") int workflowId);
 }

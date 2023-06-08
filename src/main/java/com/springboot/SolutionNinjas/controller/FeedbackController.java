@@ -2,6 +2,8 @@ package com.springboot.SolutionNinjas.controller;
 
 import com.springboot.SolutionNinjas.dto.FeedbackDto;
 import com.springboot.SolutionNinjas.model.Feedback;
+import com.springboot.SolutionNinjas.model.Ticket;
+import com.springboot.SolutionNinjas.model.User;
 import com.springboot.SolutionNinjas.service.FeedbackService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,16 @@ public class FeedbackController {
     @GetMapping("/feedbackByTicket/{ticketId}")
     public List<FeedbackDto> getFeedbackByTicket(@PathVariable int ticketId) {
         return feedbackService.getfeedbackByTicket(ticketId);
+    }
+
+    @GetMapping("/feedbackExist/{userId}/{ticketId}")
+    public ResponseEntity<Boolean> feedbackExist(@PathVariable int userId,@PathVariable int ticketId) {
+        return new ResponseEntity<Boolean>(feedbackService.feedbackExist(userId,ticketId), HttpStatus.OK);
+    }
+
+    @GetMapping("/feedback/{userId}/{ticketId}")
+    public ResponseEntity<List<Feedback>> getFeedbackByUserTicket(@PathVariable User userId, @PathVariable Ticket ticketId) {
+        return new ResponseEntity<List<Feedback>>(feedbackService.getFeedbackByUserTicket(userId,ticketId),HttpStatus.OK);
     }
 
 }

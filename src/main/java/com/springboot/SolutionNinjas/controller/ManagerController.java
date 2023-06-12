@@ -1,5 +1,6 @@
 package com.springboot.SolutionNinjas.controller;
 
+import com.springboot.SolutionNinjas.model.Department;
 import com.springboot.SolutionNinjas.model.Manager;
 import com.springboot.SolutionNinjas.model.User;
 import com.springboot.SolutionNinjas.service.ManagerService;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = {"http://localhost:4200/","https://d2sedfhgvk3bdp.cloudfront.net/"})
 public class ManagerController {
     @Autowired
     private ManagerService managerService;
@@ -47,6 +48,11 @@ public class ManagerController {
     @GetMapping("/managerByUser/{id}")
     public ResponseEntity<List<Manager>> getManagerByUser(@PathVariable User id) {
         return new ResponseEntity<List<Manager>>(managerService.getManagerByUser(id),HttpStatus.OK);
+    }
+
+    @GetMapping("/managerByDept/{id}")
+    public ResponseEntity<List<Manager>> getManagerByDepartment(@PathVariable Department id) {
+        return new ResponseEntity<List<Manager>>(managerService.getManagerByDepartment(id),HttpStatus.OK);
     }
 
 }

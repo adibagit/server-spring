@@ -1,0 +1,15 @@
+cloud:
+  aws:
+    credentials:
+      access-key: AKIA4PMKLVP23EOCA4OJ
+      secret-key: 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
+    region:
+      static: eu-west-1
+    stack:
+      auto:false
+application:
+  bucket:
+    name: ticketing-adiba-storage
+
+server:
+  port: 8080

@@ -12,5 +12,7 @@ import java.util.List;
 
 @Repository
 public interface ManagerRepository extends JpaRepository<Manager, Integer> {
-    List<Manager> findAllByUser(User userid);
+    List<Manager> findAllByUser(User userId);
+
+    List<Manager> findAllByDepartment(Department deptId);
 }

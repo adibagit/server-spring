@@ -1,5 +1,6 @@
 package com.springboot.SolutionNinjas.controller;
 
+import com.springboot.SolutionNinjas.config.CorsConfig;
 import com.springboot.SolutionNinjas.dto.AdminTicketsDTO;
 import com.springboot.SolutionNinjas.dto.AdminWorkflowsDTO;
 import com.springboot.SolutionNinjas.model.Ticket;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")
-@CrossOrigin(origins = {"http://localhost:4200/","https://d2sedfhgvk3bdp.cloudfront.net/"})
+@CrossOrigin
 public class AdminController {
     @Autowired
     private AdminService adminService;

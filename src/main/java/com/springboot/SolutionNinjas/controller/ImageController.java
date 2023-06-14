@@ -23,7 +23,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = {"http://localhost:4200/","https://d2sedfhgvk3bdp.cloudfront.net/"})
+@CrossOrigin
 public class ImageController {
     @Autowired
     private ImageService imageService;
